@@ -1,0 +1,3 @@
+#!/bin/sh
+/usr/lib/agora/.env/bin/pip install --upgrade Agora-Planner
+/usr/lib/agora/.env/bin/planner &

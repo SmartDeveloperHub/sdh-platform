@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Install Harvester
+cd /opt/tomcat/webapps
+mvn -B -U dependency:copy -DoutputFile=scmharvester.war && \
+	../bin/startup.sh && \
+	sleep 20 && \
+	rm scmharvester.war
+cp web.xml scmharvester/WEB-INF/web.xml
+../bin/shutdown.sh
+../bin/startup.sh
