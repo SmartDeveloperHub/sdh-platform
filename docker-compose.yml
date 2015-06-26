@@ -24,6 +24,7 @@ planner:
 #    - "5000:5000"
 #    - "2224:22"    
   links:
+    - scmharvester:scmharvester
     - fountain:fountain
     - redis:redis
   command: /sbin/my_init
