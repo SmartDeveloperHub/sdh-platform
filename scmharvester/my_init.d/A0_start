@@ -4,7 +4,7 @@
 cd /opt/tomcat/webapps
 mvn -B -U dependency:copy -DoutputFile=scmharvester.war
 sudo ../bin/startup.sh
-sleep 10
+sleep 20
 sudo ../bin/shutdown.sh
 rm scmharvester.war
 cp web.xml scmharvester/WEB-INF/web.xml
