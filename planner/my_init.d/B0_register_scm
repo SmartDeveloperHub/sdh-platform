@@ -6,11 +6,17 @@ import time
 response = requests.get('http://www.smartdeveloperhub.org/vocabulary/scm')
 onto_scm = response.text
 
-response = requests.post('http://fountain:5002/vocabs', onto_scm, headers={'Content-Type': 'text/turtle'})
-print 'Load SCM vocabulary: %s' % response.status_code
-if response.status_code < 500:
-    time.sleep(6)
-    response = requests.post('http://fountain:5002/seeds',
-                             json={'type': 'scm:SCMHarvester',
-                                   'uri': 'http://scmharvester:8080/scmharvester/webapi/harvester/scm/gitlab'})
-    print 'Load harvester seed: %s' % response.status_code
+connected = False
+while not connected:
+	try:
+		response = requests.post('http://fountain:5002/vocabs', onto_scm, headers={'Content-Type': 'text/turtle'})
+		print 'Load SCM vocabulary: %s' % response.status_code
+		if response.status_code < 500:
+		    time.sleep(6)
+		    response = requests.post('http://fountain:5002/seeds',
+		                             json={'type': 'scm:SCMHarvester',
+		                                   'uri': 'http://scmharvester:8080/scmharvester/webapi/harvester/scm/gitlab'})
+		    print 'Load harvester seed: %s' % response.status_code
+		    connected = True
+	except Exception:
+		time.sleep(1)
