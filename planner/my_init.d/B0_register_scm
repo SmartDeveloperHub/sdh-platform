@@ -10,6 +10,8 @@ connected = False
 while not connected:
 	try:
 		response = requests.post('http://fountain:5002/vocabs', onto_scm, headers={'Content-Type': 'text/turtle'})
+		if response.status_code == 409:
+		    response = requests.put('http://fountain:5002/vocabs/scm', onto_scm, headers={'Content-Type': 'text/turtle'})
 		print 'Load SCM vocabulary: %s' % response.status_code
 		if response.status_code < 500:
 		    time.sleep(6)
