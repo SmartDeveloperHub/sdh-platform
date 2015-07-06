@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Install Harvester
+
+mkdir -p /tmp
+cd /tmp
+# download or copy harvester.war
+# mvn command to install & deploy
