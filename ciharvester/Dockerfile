@@ -48,7 +48,7 @@ ONBUILD ./my_init.d/ /etc/my_init.d/
 
 CMD ["/sbin/my_init"]
 
-EXPOSE 8080
+EXPOSE 80
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
