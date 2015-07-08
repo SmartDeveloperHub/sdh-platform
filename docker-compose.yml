@@ -50,6 +50,7 @@ ciharvester:
   hostname: ciharvester
   domainname: localdomain
   command: /sbin/my_init
+  mem_limit: 1024m
 
 nginx:
   build: nginx
