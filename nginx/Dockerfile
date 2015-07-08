@@ -1,2 +1,2 @@
-FROM nginx:1.7.6
+FROM xdrum/nginx-extras
 COPY nginx.conf /etc/nginx/nginx.conf
