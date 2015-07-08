@@ -1,0 +1,3 @@
+#!/bin/sh
+/usr/lib/metrics/.env/bin/pip install --upgrade SDH-SCM-Metrics
+/usr/lib/metrics/.env/bin/sdh-scm-metrics &

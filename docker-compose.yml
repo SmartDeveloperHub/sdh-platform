@@ -2,16 +2,11 @@ redis:
   hostname: redis
   domainname: localdomain
   build: redis
-#  ports:
-#    - "6379:6379"  
 
 fountain:
   build: fountain
   hostname: fountain
   domainname: localdomain
-#  ports:    
-#    - "5002:5002"
-#    - "2223:22"
   links:
     - redis:redis
   command: /sbin/my_init
@@ -20,12 +15,19 @@ planner:
   build: planner
   hostname: planner
   domainname: localdomain
-#  ports:
-#    - "5000:5000"
-#    - "2224:22"    
   links:
     - scmharvester:scmharvester
     - fountain:fountain
+    - redis:redis
+  command: /sbin/my_init
+
+scmmetrics:
+  build: scmmetrics
+  hostname: scmmetrics
+  domainname: localdomain
+  links:
+    - scmharvester:scmharvester
+    - planner:planner
     - redis:redis
   command: /sbin/my_init
 
@@ -33,13 +35,11 @@ enhancer:
   build: enhancer
   hostname: enhancer
   domainname: localdomain
-#  ports:    
-#    - "9000:5000"
   links:
     - redis:redis
   command: /sbin/my_init
   environment:
-    - ENH_GITLAB_IP=192.168.2.2
+    - ENH_GITLAB_IP=127.0.0.1
     - ENH_GITLAB_PORT=80
     - ENH_GITLAB_USER=root
     - ENH_GITLAB_PASS=12345678
@@ -64,6 +64,7 @@ nginx:
     - fountain:fountain
     - enhancer:enhancer
     - scmharvester:scmharvester
+    - scmmetrics:scmmetrics
   ports:
     - "9001:80"
   volumes:
