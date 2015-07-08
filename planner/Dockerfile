@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.15
+FROM phusion/baseimage
 MAINTAINER Fernando Serena
 
 # set UTF-8 locale
