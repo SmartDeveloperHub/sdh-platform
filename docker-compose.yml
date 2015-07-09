@@ -16,11 +16,18 @@ planner:
   hostname: planner
   domainname: localdomain
   links:
+    - fountain:fountain
+  command: /sbin/my_init
+
+fragment:
+  build: fragment
+  hostname: fragment
+  domainname: localdomain
+  links:
     - scmharvester:scmharvester
     - ciharvester:ciharvester
+    - scmmetrics:scmmetrics
     - fountain:fountain
-    - redis:redis
-  command: /sbin/my_init
 
 scmmetrics:
   build: scmmetrics
@@ -29,6 +36,7 @@ scmmetrics:
   links:
     - scmharvester:scmharvester
     - planner:planner
+    - fountain:fountain
     - redis:redis
   command: /sbin/my_init
 
@@ -68,7 +76,7 @@ nginx:
   hostname: nginx
   domainname: localdomain
   links:
-    - planner:planner
+    - fragment:fragment
     - fountain:fountain
     - enhancer:enhancer
     - scmharvester:scmharvester
