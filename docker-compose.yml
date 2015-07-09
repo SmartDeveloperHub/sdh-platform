@@ -17,6 +17,7 @@ planner:
   domainname: localdomain
   links:
     - scmharvester:scmharvester
+    - ciharvester:ciharvester
     - fountain:fountain
     - redis:redis
   command: /sbin/my_init
