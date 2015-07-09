@@ -14,7 +14,8 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 	LC_ALL="en_US.UTF-8" \
 	JAVA_HOME="/usr/lib/jvm/java-7-oracle" \
 	MAVEN_FOLDER="apache-maven-3.3.3" \
-	MAVEN="http://ftp.cixug.es/apache/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz"
+	MAVEN="http://ftp.cixug.es/apache/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz" \
+	HARVESTER_HOME="/opt/ci-harvester"
 
 # Install Java and Libraries.
 RUN \
@@ -39,13 +40,15 @@ RUN \
 	cp -r $MAVEN_FOLDER/lib /usr/local/ && \
 	rm -rf $MAVEN_FOLDER
 
+COPY files/pom.xml $HARVESTER_HOME/pom.xml
+
 # Configure runit
 ADD ./my_init.d/ /etc/my_init.d/
 ONBUILD ./my_init.d/ /etc/my_init.d/
 
 CMD ["/sbin/my_init"]
 
-EXPOSE 8080
+EXPOSE 80
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
