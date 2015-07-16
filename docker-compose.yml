@@ -3,6 +3,11 @@ redis:
   domainname: localdomain
   build: redis
 
+mredis:
+  hostname: mredis
+  domainname: localdomain
+  build: mredis
+
 fountain:
   build: fountain
   hostname: fountain
@@ -37,7 +42,7 @@ scmmetrics:
     - scmharvester:scmharvester
     - planner:planner
     - fountain:fountain
-    - redis:redis
+    - mredis:redis
   command: /sbin/my_init
 
 enhancer:
