@@ -4,9 +4,9 @@ redis:
   build: redis
 
 mredis:
+  build: mredis
   hostname: mredis
   domainname: localdomain
-  build: mredis
 
 fountain:
   build: fountain
@@ -75,6 +75,22 @@ ciharvester:
   domainname: localdomain
   command: /sbin/my_init
   mem_limit: 1024m
+
+sdhapi:
+  build: sdhapi
+  hostname: sdhapi
+  domainname: localdomain
+  links:
+    - fragment:fragment
+    - planner:planner
+  environment:
+    - USERPROFILE=/usr/lib/sdh-api
+    - PLANNER_ADDR=planner
+    - PLANNER_PORT=9001
+    - FRAGMNT_ADDR=fragment
+    - FRAGMNT_PORT=9001
+  ports:
+    - "9002:8080"
 
 nginx:
   build: nginx

@@ -1,0 +1,35 @@
+#!/bin/sh
+ 
+ROOT=$(pwd)
+SDHNAME="sdh-api"
+
+Update() {
+    cd /usr/lib
+    VC_DIR=$1/.git
+    if [ ! -d $VC_DIR ]
+    then
+        echo "Repository is not present, need to clone."
+        # Until master is updated, agora-integration
+        # is the default branch
+        git clone $2 $1 -b agora-integration
+        cd $SDHNAME
+        npm install
+    else
+        echo "Pulling..."
+        cd $SDHNAME
+        git pull $2
+    fi
+    
+    sed -i \
+        -e "s|\$PLANNER_PORT|$PLANNER_PORT|g" \
+        -e "s|\$PLANNER_ADDR|$PLANNER_ADDR|g" \
+        -e "s|\$FRAGMNT_PORT|$FRAGMNT_PORT|g" \
+        -e "s|\$FRAGMNT_ADDR|$FRAGMNT_ADDR|g" \
+    /home/config.json
+    cp /home/config.json node_modules/agora-fragment-js/config.json
+    node index.js &
+    cd $ROOT
+}
+
+echo "> SDH API"
+Update $SDHNAME https://github.com/smartdeveloperhub/$SDHNAME.git
