@@ -89,6 +89,7 @@ sdhapi:
     - PLANNER_PORT=5000
     - FRAGMNT_ADDR=http://fragment
     - FRAGMNT_PORT=5000
+    - SDH_API_HOST="http://sdhapi:8080"
   ports:
     - "9002:8080"
 

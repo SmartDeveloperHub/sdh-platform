@@ -14,6 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
 
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 ADD ./files/config.json /home/config.json
+ADD ./files/swagger.json /home/swagger.json
 
 # Configure runit
 ADD ./my_init.d/ /etc/my_init.d/

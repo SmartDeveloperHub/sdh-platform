@@ -26,7 +26,13 @@ Update() {
         -e "s|\$FRAGMNT_PORT|$FRAGMNT_PORT|g" \
         -e "s|\$FRAGMNT_ADDR|$FRAGMNT_ADDR|g" \
     /home/config.json
+
+    sed -i \
+        -e "s|\$SDH_API_HOST|$SDH_API_HOST|g" \
+    /home/swagger.json
+
     cp /home/config.json node_modules/agora-fragment-js/config.json
+    cp /home/swagger.json api/swagger.json
     node index.js &
     cd $ROOT
 }
