@@ -41,7 +41,7 @@ ONBUILD ./my_init.d/ /etc/my_init.d/
 CMD ["/sbin/my_init"]
 
 VOLUME ["/usr/lib/agora"]
-EXPOSE 5002
+EXPOSE 5000
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
