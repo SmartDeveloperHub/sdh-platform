@@ -85,10 +85,10 @@ sdhapi:
     - planner:planner
   environment:
     - USERPROFILE=/usr/lib/sdh-api
-    - PLANNER_ADDR=planner
-    - PLANNER_PORT=9001
-    - FRAGMNT_ADDR=fragment
-    - FRAGMNT_PORT=9001
+    - PLANNER_ADDR=http://planner
+    - PLANNER_PORT=5000
+    - FRAGMNT_ADDR=http://fragment
+    - FRAGMNT_PORT=5000
   ports:
     - "9002:8080"
 
