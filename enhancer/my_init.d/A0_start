@@ -1,3 +1,5 @@
 #!/bin/sh
 /usr/lib/enhancer/.env/bin/pip install --upgrade "gl-enhancer==0.3.0.dev8"
-/usr/lib/enhancer/.env/bin/enhancer &
+/usr/lib/enhancer/.env/bin/pip install --upgrade "gunicorn"
+cp /usr/lib/enhancer/.env/bin/enhancer /usr/lib/enhancer/.env/bin/enhancer.py
+/usr/lib/enhancer/.env/bin/python /usr/lib/enhancer/.env/bin/gunicorn enhancer:app -c /usr/lib/enhancer/gunicorn.py.ini
