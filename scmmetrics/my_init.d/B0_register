@@ -26,6 +26,7 @@ def register_service(oid, voc_uri, ty, seed_uri):
 	post_seed(ty, seed_uri)
 
 connected = False
+count = 0
 while not connected:
 	try:
 		register_ontology('platform', 'http://www.smartdeveloperhub.org/vocabulary/platform')		
@@ -33,4 +34,7 @@ while not connected:
 						 'metrics:MetricService', 'http://scmmetrics:5003/metrics')		
 		connected = True
 	except Exception:
+                count += 1
+                if count > 1:
+                      break
 		time.sleep(1)

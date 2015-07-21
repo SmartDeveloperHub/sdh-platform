@@ -3,10 +3,13 @@
 import requests
 import time
 
-
 def register_ontology(oid, url):
-	response = requests.get(url)
-	onto = response.text
+        if "http" in url:
+	    response = requests.get(url)
+	    onto = response.text
+        else:
+            with open(url, 'r') as out:
+                 onto = out.read()
 	response = requests.post('http://fountain:5002/vocabs', onto, headers={'Content-Type': 'text/turtle'})
 	if response.status_code == 409:
 		response = requests.put('http://fountain:5002/vocabs/{}'.format(oid), onto,
@@ -30,12 +33,16 @@ def register_service(oid, voc_uri, ty, seed_uri):
 
 
 connected = False
+count = 0
 while not connected:
 	try:
 		register_service('scm', 'http://www.smartdeveloperhub.org/vocabulary/scm',
 						 'scm:SCMHarvester', 'http://scmharvester:8080/scmharvester/webapi/harvester/scm/gitlab')
-		register_service('ci', 'http://www.smartdeveloperhub.org/vocabulary/ci',
+		register_service('ci', '/usr/lib/agora/ont.ttl',
 						 'ci:CIHarvester', 'http://ciharvester/harvester/service/')
 		connected = True
 	except Exception:
+		count += 1
+		if count > 1:
+			break
 		time.sleep(1)

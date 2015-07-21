@@ -32,6 +32,7 @@ fragment:
     - scmharvester:scmharvester
     - ciharvester:ciharvester
     - scmmetrics:scmmetrics
+    - cimetrics:cimetrics
     - fountain:fountain
 
 scmmetrics:
@@ -40,6 +41,18 @@ scmmetrics:
   domainname: localdomain
   links:
     - scmharvester:scmharvester
+    - planner:planner
+    - fountain:fountain
+    - mredis:redis
+  command: /sbin/my_init
+
+cimetrics:
+  build: cimetrics
+  hostname: cimetrics
+  domainname: localdomain
+  links:
+    - scmharvester:scmharvester
+    - ciharvester:ciharvester
     - planner:planner
     - fountain:fountain
     - mredis:redis
@@ -83,13 +96,15 @@ sdhapi:
   links:
     - fragment:fragment
     - planner:planner
+    - scmmetrics:scmmetrics
+    - cimetrics:cimetrics
   environment:
     - USERPROFILE=/usr/lib/sdh-api
     - PLANNER_ADDR=http://planner
     - PLANNER_PORT=5000
     - FRAGMNT_ADDR=http://fragment
     - FRAGMNT_PORT=5000
-    - SDH_API_HOST="http://sdhapi:8080"
+    - SDH_API_HOST="http://138.4.249.224:9002"
   ports:
     - "9002:8080"
 
@@ -104,6 +119,7 @@ nginx:
     - scmharvester:scmharvester
     - scmmetrics:scmmetrics
     - ciharvester:ciharvester
+    - cimetrics:cimetrics
   ports:
     - "9001:80"
   volumes:

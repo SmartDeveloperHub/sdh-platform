@@ -28,6 +28,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
         supervisor
 
 ENV HOME /usr/lib/agora
+ADD ./files/ont.ttl /usr/lib/agora/ont.ttl
 ENV CONFIG agora.planner.server.config.ProductionConfig
 
 # Create directories & virtual env for the Planner
