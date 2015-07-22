@@ -20,7 +20,7 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 # Install Java and Libraries.
 RUN \
 	apt-get update && \
-	apt-get install -y curl unzip wget make gcc git gperf bison automake debconf-utils && \
+	apt-get install -y curl unzip wget git && \
 	echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
 	add-apt-repository -y ppa:webupd8team/java && \
 	apt-get update && \
