@@ -96,6 +96,8 @@ sdhapi:
   links:
     - fragment:fragment
     - planner:planner
+    - scmharvester:scmharvester
+    - ciharvester:ciharvester
     - scmmetrics:scmmetrics
     - cimetrics:cimetrics
   environment:
