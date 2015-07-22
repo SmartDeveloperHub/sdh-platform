@@ -29,9 +29,9 @@ connected = False
 count = 0
 while not connected:
 	try:
-		register_ontology('platform', 'http://www.smartdeveloperhub.org/vocabulary/platform')		
 		register_service('metrics', 'http://www.smartdeveloperhub.org/vocabulary/metrics',
-						 'metrics:MetricService', 'http://scmmetrics:5003/metrics')		
+						 'metrics:MetricService', 'http://scmmetrics:5003/metrics')
+		register_ontology('platform', 'http://www.smartdeveloperhub.org/vocabulary/platform')		
 		connected = True
 	except Exception:
                 count += 1
