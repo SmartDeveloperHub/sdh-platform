@@ -12,20 +12,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
         python-minimal \
         python-dev \
         python-virtualenv \
-        libevent-dev \
-        libpq-dev \
-        libxml2-dev \
-        libxslt1-dev \
-        build-essential
-
-# Install required packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
-        apache2 \
-        libapache2-mod-wsgi \
-        postfix \
+        build-essential \
         git \
-        libgeos-c1 \
         supervisor
+
 
 ENV HOME /usr/lib/agora
 ENV CONFIG agora.fountain.server.config.ProductionConfig
@@ -37,6 +27,8 @@ WORKDIR /usr/lib/agora
 # Configure runit
 ADD ./my_init.d/ /etc/my_init.d/
 ONBUILD ./my_init.d/ /etc/my_init.d/
+
+RUN export TERM=xterm
 
 CMD ["/sbin/my_init"]
 
