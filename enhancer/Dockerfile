@@ -33,7 +33,6 @@ ENV HOME /usr/lib/enhancer
 # Create directories & virtual env for the Planner
 RUN virtualenv $HOME/.env
 WORKDIR /usr/lib/enhancer
-ADD ./files/gunicorn.py.ini /usr/lib/enhancer/gunicorn.py.ini
 
 # Configure runit
 ADD ./my_init.d/ /etc/my_init.d/
