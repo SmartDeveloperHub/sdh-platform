@@ -16,7 +16,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
         libpq-dev \
         libxml2-dev \
         libxslt1-dev \
-        build-essential
+        build-essential \
+        nano
 
 # Install required packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
@@ -28,7 +29,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
         supervisor
 
 ENV HOME /usr/lib/enhancer
-
 
 # Create directories & virtual env for the Planner
 RUN virtualenv $HOME/.env

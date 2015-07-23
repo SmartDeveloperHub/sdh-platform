@@ -23,7 +23,7 @@ ENV PATH $CATALINA_HOME/bin:$PATH
 # Install Java and Libraries.
 RUN \
 	apt-get update && \
-	apt-get install -y curl unzip wget git && \
+	apt-get install -y curl unzip wget git nano && \
 	echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
 	add-apt-repository -y ppa:webupd8team/java && \
 	apt-get update && \
