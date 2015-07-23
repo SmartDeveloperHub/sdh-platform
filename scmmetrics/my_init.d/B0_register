@@ -9,7 +9,8 @@ def register_ontology(oid, url):
 	onto = response.text
 	response = requests.post('http://fountain:5002/vocabs', onto, headers={'Content-Type': 'text/turtle'})
 	if response.status_code == 409:
-		response = requests.put('http://fountain:5002/vocabs/{}'.format(oid), onto, headers={'Content-Type': 'text/turtle'})
+		# response = requests.put('http://fountain:5002/vocabs/{}'.format(oid), onto, headers={'Content-Type': 'text/turtle'})
+		return
 	print 'Load {} vocabulary: {}'.format(oid, response.status_code)
 	if response.status_code < 500:
 		time.sleep(6)
