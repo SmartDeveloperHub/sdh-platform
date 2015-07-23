@@ -10,7 +10,7 @@ RUN apt-get -qq update
 # Install required packages and node
 RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
         build-essential curl pkg-config supervisor \
-        cmake git nodejs npm
+        cmake git nodejs npm nano
 
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 ADD ./files/config.json /home/config.json

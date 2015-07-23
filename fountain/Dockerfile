@@ -14,8 +14,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
         python-virtualenv \
         build-essential \
         git \
-        supervisor
-
+        supervisor \
+        nano
 
 ENV HOME /usr/lib/agora
 ENV CONFIG agora.fountain.server.config.ProductionConfig

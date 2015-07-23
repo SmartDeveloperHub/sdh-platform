@@ -15,6 +15,8 @@ fountain:
   links:
     - redis:redis
   command: /sbin/my_init
+  environment:
+    - TERM=xterm
 
 planner:
   build: planner
@@ -23,6 +25,8 @@ planner:
   links:
     - fountain:fountain
   command: /sbin/my_init
+  environment:
+    - TERM=xterm
 
 fragment:
   build: fragment
@@ -34,6 +38,8 @@ fragment:
     - scmmetrics:scmmetrics
     - cimetrics:cimetrics
     - fountain:fountain
+  environment:
+    - TERM=xterm
 
 scmmetrics:
   build: scmmetrics
@@ -45,6 +51,8 @@ scmmetrics:
     - fountain:fountain
     - mredis:redis
   command: /sbin/my_init
+  environment:
+    - TERM=xterm
 
 cimetrics:
   build: cimetrics
@@ -57,6 +65,8 @@ cimetrics:
     - fountain:fountain
     - mredis:redis
   command: /sbin/my_init
+  environment:
+    - TERM=xterm
 
 enhancer:
   build: enhancer
@@ -73,6 +83,7 @@ enhancer:
     - ENH_REDIS_IP=redis
     - ENH_REDIS_PORT=6379
     - ENH_REDIS_DB=0
+    - TERM=xterm
 
 scmharvester:
   build: scmharvester
@@ -81,6 +92,8 @@ scmharvester:
   links:
     - enhancer:enhancer
   command: /sbin/my_init
+  environment:
+    - TERM=xterm
 
 ciharvester:
   build: ciharvester
@@ -88,6 +101,8 @@ ciharvester:
   domainname: localdomain
   command: /sbin/my_init
   mem_limit: 1024m
+  environment:
+    - TERM=xterm
 
 sdhapi:
   build: sdhapi
@@ -107,6 +122,7 @@ sdhapi:
     - FRAGMNT_ADDR=http://fragment
     - FRAGMNT_PORT=5000
     - SDH_API_HOST="http://138.4.249.224:9002"
+    - TERM=xterm
   ports:
     - "9002:8080"
 
@@ -126,6 +142,5 @@ nginx:
     - "9001:80"
   volumes:
     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-
 
 

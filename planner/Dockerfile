@@ -7,7 +7,6 @@ RUN locale-gen en_US.UTF-8 && \
 
 RUN apt-get -qq update
 
-
 # Install required packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
         python-minimal \
@@ -15,7 +14,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y install \
         python-virtualenv \
         build-essential \
         git \
-        supervisor
+        supervisor \
+        nano
 
 ENV HOME /usr/lib/agora
 ADD ./files/ont.ttl /usr/lib/agora/ont.ttl
