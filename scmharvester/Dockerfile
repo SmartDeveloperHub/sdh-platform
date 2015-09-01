@@ -14,8 +14,8 @@ ENV CATALINA_HOME="/opt/tomcat" \
 	LANG="en_US.UTF-8" \
 	LC_ALL="en_US.UTF-8" \
 	JAVA_HOME="/usr/lib/jvm/java-7-oracle" \
-	TOMCAT_FOLDER="apache-tomcat-7.0.63" \
-	TOMCAT="http://apache.rediris.es/tomcat/tomcat-7/v7.0.63/bin/apache-tomcat-7.0.63.tar.gz" \
+	TOMCAT_FOLDER="apache-tomcat-7.0.64" \
+	TOMCAT="http://ftp.cixug.es/apache/tomcat/tomcat-7/v7.0.64/bin/apache-tomcat-7.0.64.tar.gz" \
 	MAVEN_FOLDER="apache-maven-3.3.3" \
 	MAVEN="http://ftp.cixug.es/apache/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz"
 ENV PATH $CATALINA_HOME/bin:$PATH
