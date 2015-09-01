@@ -1,12 +1,16 @@
 redis:
+  build: redis
   hostname: redis
   domainname: localdomain
-  build: redis
+  environment:
+    - TERM=xterm
 
 mredis:
   build: mredis
   hostname: mredis
   domainname: localdomain
+  environment:
+    - TERM=xterm
 
 fountain:
   build: fountain
@@ -138,6 +142,8 @@ nginx:
     - scmmetrics:scmmetrics
     - ciharvester:ciharvester
     - cimetrics:cimetrics
+  environment:
+    - TERM=xterm
   ports:
     - "9001:80"
   volumes:
