@@ -5,19 +5,11 @@ SDHNAME="sdh-api"
 
 Update() {
     cd /usr/lib
-    VC_DIR=$1/.git
-    if [ ! -d $VC_DIR ]
+    if [ ! -d node_modules/$1 ]
     then
-        echo "Repository is not present, need to clone."
-        # Until master is updated, agora-integration
-        # is the default branch
-        git clone $2 $1 -b agora-integration
-        cd $SDHNAME
-        npm install
+        npm install $1
     else
-        echo "Pulling..."
-        cd $SDHNAME
-        git pull $2
+    	npm update
     fi
     
     sed -i \
@@ -31,6 +23,7 @@ Update() {
         -e "s|\$SDH_API_HOST|$SDH_API_HOST|g" \
     /home/swagger.json
 
+    cd node_modules/$1
     cp /home/config.json node_modules/agora-fragment-js/config.json
     cp /home/swagger.json api/swagger.json
     node index.js &
@@ -38,4 +31,4 @@ Update() {
 }
 
 echo "> SDH API"
-Update $SDHNAME https://github.com/smartdeveloperhub/$SDHNAME.git
+Update $SDHNAME
