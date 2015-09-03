@@ -17,7 +17,7 @@ fountain:
   hostname: fountain
   domainname: localdomain
   links:
-    - redis:redis
+    - mredis:redis
   command: /sbin/my_init
   environment:
     - TERM=xterm
