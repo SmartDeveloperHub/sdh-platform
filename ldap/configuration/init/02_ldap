@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Start ldap
+service slapd start
