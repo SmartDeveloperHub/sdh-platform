@@ -2,8 +2,7 @@ FROM phusion/baseimage
 MAINTAINER Alejandro F. Carrera <alej4fc@gmail.com>
 
 # Exports
-ENV VAGRANT_PROV="provisioning" \
-	VAGRANT_CONF="configuration" \
+ENV VAGRANT_CONF="configuration" \
 	LDAP_SERVER="sdh" \
 	LDAP_DOMAIN="ldap.smartdeveloperhub.org" \
 	LDAP_PASSWD="ldapsdh12345" \
@@ -22,8 +21,8 @@ ENV VAGRANT_PROV="provisioning" \
 	LANG="en_US.UTF-8"
 
 # Language Environment
-COPY $VAGRANT_PROV/bash.bashrc /etc/bash.bashrc
-COPY $VAGRANT_PROV/lang.sh /etc/profile.d/lang.sh
+COPY $VAGRANT_CONF/bash.bashrc /etc/bash.bashrc
+COPY $VAGRANT_CONF/lang.sh /etc/profile.d/lang.sh
 RUN apt-get -qq update && apt-get install -qq -y apt-utils locales && locale-gen en_US.UTF-8
 
 # Dependencies
