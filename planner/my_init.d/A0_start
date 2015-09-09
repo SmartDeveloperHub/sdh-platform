@@ -1,6 +1,5 @@
 #!/bin/sh
-/usr/lib/agora/.env/bin/pip install --upgrade Agora-Planner
+/usr/lib/agora/.env/bin/pip install Agora-Planner==0.2.21
 /usr/lib/agora/.env/bin/planner &
 sleep 1
 /usr/lib/agora/.env/bin/python /etc/my_init.d/B0_register
-

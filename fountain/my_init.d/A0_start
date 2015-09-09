@@ -1,3 +1,3 @@
 #!/bin/sh
-/usr/lib/agora/.env/bin/pip install --upgrade Agora-Fountain
+/usr/lib/agora/.env/bin/pip install Agora-Fountain==0.2.21
 /usr/lib/agora/.env/bin/fountain &

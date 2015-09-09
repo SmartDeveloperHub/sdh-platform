@@ -1,4 +1,5 @@
 #!/bin/sh
-/usr/lib/metrics/.env/bin/pip install --upgrade SDH-CI-Metrics
+/usr/lib/metrics/.env/bin/pip install SDH-CI-Metrics==0.0.13
 /usr/lib/metrics/.env/bin/sdh-ci-metrics &
+sleep 1
 /usr/lib/metrics/.env/bin/python /etc/my_init.d/B0_register

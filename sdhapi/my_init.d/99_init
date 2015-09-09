@@ -7,7 +7,7 @@ Update() {
     cd /usr/lib
     if [ ! -d node_modules/$1 ]
     then
-        npm install $1
+        npm install $1@0.0.5
     else
     	npm update
     fi
