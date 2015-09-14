@@ -5,7 +5,6 @@ MAINTAINER Alejandro F. Carrera
 ENV HARVESTER_HOME="/opt/scm-harvester"
 
 COPY files/pom.xml $HARVESTER_HOME/pom.xml
-COPY files/config.properties $HARVESTER_HOME/config.properties
 
 # Configure runit
 ADD ./my_init.d/ /etc/my_init.d/
