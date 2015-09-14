@@ -97,6 +97,7 @@ scmharvester:
     - enhancer:enhancer
   command: /sbin/my_init
   environment:
+    - GITLAB_ENHANCER=http://enhancer:5000/api
     - TERM=xterm
 
 ciharvester:
