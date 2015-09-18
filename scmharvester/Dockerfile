@@ -18,7 +18,7 @@ COPY files/tomcat-users.xml $CATALINA_HOME/conf/tomcat-users.xml
 
 WORKDIR $CATALINA_HOME/webapps
 COPY files/pom.xml pom.xml
-COPY files/web.xml web.xml
+COPY files/web.xml WEB-INF/web.xml
 
 # Configure runit
 ADD ./my_init.d/ /etc/my_init.d/
