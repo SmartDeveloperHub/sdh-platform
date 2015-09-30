@@ -6,21 +6,22 @@ redis:
     - TERM=xterm
 
 mredis:
-  build: mredis
+  image: redis
   hostname: mredis
   domainname: localdomain
   environment:
     - TERM=xterm
 
 fountain:
-  build: fountain
+  image: smartdeveloperhub/agora-fountain
   hostname: fountain
   domainname: localdomain
   links:
-    - mredis:redis
-  command: /sbin/my_init
+    - mredis:redis  
   environment:
     - TERM=xterm
+    - FOUNTAIN_CONFIG=agora.fountain.server.config.ProductionConfig
+    - AGORA_FOUNTAIN_VERSION=0.4.0.dev6
 
 planner:
   build: planner
@@ -28,12 +29,13 @@ planner:
   domainname: localdomain
   links:
     - fountain:fountain
-  command: /sbin/my_init
   environment:
     - TERM=xterm
+    - PLANNER_CONFIG=agora.planner.server.config.ProductionConfig
+    - AGORA_PLANNER_VERSION=0.3.0.dev0
 
 fragment:
-  build: fragment
+  image: smartdeveloperhub/agora-planner
   hostname: fragment
   domainname: localdomain
   links:
@@ -44,9 +46,11 @@ fragment:
     - fountain:fountain
   environment:
     - TERM=xterm
+    - PLANNER_CONFIG=agora.planner.server.config.ProductionConfig
+    - AGORA_PLANNER_VERSION=0.3.0.dev0
 
 scmmetrics:
-  build: scmmetrics
+  image: smartdeveloperhub/sdh-scm-metrics-docker
   hostname: scmmetrics
   domainname: localdomain
   links:
@@ -54,12 +58,11 @@ scmmetrics:
     - planner:planner
     - fountain:fountain
     - mredis:redis
-  command: /sbin/my_init
   environment:
     - TERM=xterm
 
 cimetrics:
-  build: cimetrics
+  image: smartdeveloperhub/sdh-ci-metrics-docker
   hostname: cimetrics
   domainname: localdomain
   links:
@@ -68,12 +71,11 @@ cimetrics:
     - planner:planner
     - fountain:fountain
     - mredis:redis
-  command: /sbin/my_init
   environment:
     - TERM=xterm
 
 enhancer:
-  build: enhancer
+  image: smartdeveloperhub/sdh-gl-enhancer-docker
   hostname: enhancer
   domainname: localdomain
   links:
@@ -88,28 +90,27 @@ enhancer:
     - ENH_REDIS_PORT=6379
     - ENH_REDIS_DB=0
     - TERM=xterm
+    - ENHANCER-VERSION=0.3.0.dev8
 
 scmharvester:
-  build: scmharvester
+  image: smartdeveloperhub/sdh-scm-harvester-docker:0.1.0
   hostname: scmharvester
   domainname: localdomain
   links:
     - enhancer:enhancer
-  command: /sbin/my_init
   environment:
     - TERM=xterm
 
 ciharvester:
-  build: ciharvester
+  image: smartdeveloperhub/sdh-scm-harvester-docker:0.1.0
   hostname: ciharvester
   domainname: localdomain
-  command: /sbin/my_init
   mem_limit: 1024m
   environment:
     - TERM=xterm
 
 sdhapi:
-  build: sdhapi
+  image: smartdeveloperhub/sdh-api-docker
   hostname: sdhapi
   domainname: localdomain
   links:

@@ -1,0 +1,3 @@
+#!/bin/sh
+/usr/lib/agora/.env/bin/python /etc/my_init.d/B0_register
+
