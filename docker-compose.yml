@@ -12,7 +12,7 @@ mredis:
   environment:
     - TERM=xterm
   volumes:
-    - redis/data/graph:/usr/lib/agora/graph_store
+    - /usr/lib/agora/graph_store
 
 fountain:
   image: smartdeveloperhub/agora-fountain
@@ -54,7 +54,7 @@ fragment:
     - AGORA_PLANNER_VERSION=0.3.0.dev0
 
 scmmetrics:
-  image: smartdeveloperhub/sdh-scm-metrics-docker
+  build: scmmetrics
   hostname: scmmetrics
   domainname: localdomain
   links:
@@ -64,9 +64,10 @@ scmmetrics:
     - mredis:redis
   environment:
     - TERM=xterm
+    - CONFIG=sdh.metrics.scm.config.ProductionConfig
 
 cimetrics:
-  image: smartdeveloperhub/sdh-ci-metrics-docker
+  build: cimetrics
   hostname: cimetrics
   domainname: localdomain
   links:
@@ -77,6 +78,7 @@ cimetrics:
     - mredis:redis
   environment:
     - TERM=xterm
+    - CONFIG=sdh.metrics.ci.config.ProductionConfig
 
 enhancer:
   image: smartdeveloperhub/sdh-gl-enhancer-docker
@@ -94,22 +96,25 @@ enhancer:
     - ENH_REDIS_PORT=6379
     - ENH_REDIS_DB=0
     - TERM=xterm
-    - ENHANCER-VERSION=0.3.0.dev8
+    - ENHANCER_VERSION=0.3.0.dev8
 
 scmharvester:
-  image: smartdeveloperhub/sdh-scm-harvester-docker:0.1.0
+  build: scmharvester
   hostname: scmharvester
   domainname: localdomain
   links:
     - enhancer:enhancer
+    - fountain:fountain
   environment:
     - TERM=xterm
 
 ciharvester:
-  image: smartdeveloperhub/sdh-scm-harvester-docker:0.1.0
+  build: ciharvester
   hostname: ciharvester
   domainname: localdomain
   mem_limit: 1024m
+  links:
+    - fountain:fountain
   environment:
     - TERM=xterm
 
