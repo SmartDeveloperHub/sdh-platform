@@ -1,0 +1,3 @@
+#!/bin/sh
+sleep 5
+curl -X POST -d '{"type": "ci:CIHarvester", "uri": "http://ciharvester/harvester/service/"}' http://fountain:5002/seeds -H "content-type: application/json"
