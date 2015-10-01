@@ -1,0 +1,3 @@
+#!/bin/sh
+sleep 10
+curl -X POST -d '{"type": "scm:SCMHarvester", "uri": "http://scmharvester:8080/scmharvester/webapi/harvester/scm/gitlab"}' http://fountain:5002/seeds -H "content-type: application/json"
