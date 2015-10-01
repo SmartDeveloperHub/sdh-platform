@@ -16,6 +16,6 @@ while not connected:
 		connected = True
 	except Exception:
                 count += 1
-                if count > 1:
+                if count > 5:
                     break
 		time.sleep(1)
