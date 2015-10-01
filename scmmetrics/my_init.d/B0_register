@@ -4,38 +4,18 @@ import requests
 import time
 
 
-def register_ontology(oid, url):
-	response = requests.get(url)
-	onto = response.text
-	response = requests.post('http://fountain:5002/vocabs', onto, headers={'Content-Type': 'text/turtle'})
-	if response.status_code == 409:
-		# response = requests.put('http://fountain:5002/vocabs/{}'.format(oid), onto, headers={'Content-Type': 'text/turtle'})
-		return
-	print 'Load {} vocabulary: {}'.format(oid, response.status_code)
-	if response.status_code < 500:
-		time.sleep(6)
-		return response
-	
-	raise Exception('Fountain not available')
-
 def post_seed(ty, uri):
 	response = requests.post('http://fountain:5002/seeds', json={'type': ty, 'uri': uri})
 	print 'Load {} seed: {}'.format(ty, response.status_code)
-
-def register_service(oid, voc_uri, ty, seed_uri):
-	register_ontology(oid, voc_uri)
-	post_seed(ty, seed_uri)
 
 connected = False
 count = 0
 while not connected:
 	try:
-		register_service('metrics', 'http://www.smartdeveloperhub.org/vocabulary/metrics',
-						 'metrics:MetricService', 'http://scmmetrics:5003/metrics')
-		register_ontology('platform', 'http://www.smartdeveloperhub.org/vocabulary/platform')		
+		post_seed('metrics:MetricService', 'http://scmmetrics:5003/metrics')
 		connected = True
 	except Exception:
                 count += 1
-                if count > 1:
+                if count > 5:
                       break
 		time.sleep(1)
