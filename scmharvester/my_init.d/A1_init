@@ -1,3 +1,10 @@
 #!/bin/sh
-sleep 10
-curl -X POST -d '{"type": "scm:SCMHarvester", "uri": "http://scmharvester:8080/scmharvester/webapi/harvester/scm/gitlab"}' http://fountain:5002/seeds -H "content-type: application/json"
+DATA='{"type": "scm:SCMHarvester", "uri": "http://scmharvester:8080/scmharvester/webapi/harvester/scm/gitlab"}'
+curl -s -X POST -d "$DATA" http://fountain:5002/seeds -H "content-type: application/json"
+while [ "$?" = "7" ]
+do
+    echo 'Fountain is not yet ready...';
+    sleep 1;
+    curl -s -X POST -d "$DATA" http://fountain:5002/seeds -H "content-type: application/json"
+done
+

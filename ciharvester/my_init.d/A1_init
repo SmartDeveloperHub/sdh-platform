@@ -1,3 +1,10 @@
 #!/bin/sh
-sleep 5
-curl -X POST -d '{"type": "ci:CIHarvester", "uri": "http://ciharvester/harvester/service/"}' http://fountain:5002/seeds -H "content-type: application/json"
+DATA='{"type": "ci:CIHarvester", "uri": "http://ciharvester/harvester/service/"}'
+curl -s -X POST -d "$DATA" http://fountain:5002/seeds -H "content-type: application/json"
+while [ "$?" = "7" ]
+do
+    echo 'Fountain is not yet ready...';
+    sleep 1;
+    curl -s -X POST -d "$DATA" http://fountain:5002/seeds -H "content-type: application/json"
+done
+
