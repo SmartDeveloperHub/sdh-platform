@@ -62,6 +62,7 @@ scmmetrics:
   environment:
     - TERM=xterm
     - CONFIG=sdh.metrics.scm.config.ProductionConfig
+    - CI_METRICS_VERSION=0.0.13
 
 cimetrics:
   build: cimetrics
@@ -76,6 +77,7 @@ cimetrics:
   environment:
     - TERM=xterm
     - CONFIG=sdh.metrics.ci.config.ProductionConfig
+    - CI_METRICS_VERSION=0.0.13
 
 enhancer:
   image: smartdeveloperhub/sdh-gl-enhancer-docker
