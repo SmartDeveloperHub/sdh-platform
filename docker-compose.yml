@@ -23,7 +23,6 @@ fountain:
   environment:
     - TERM=xterm
     - FOUNTAIN_CONFIG=agora.fountain.server.config.ProductionConfig
-    - AGORA_FOUNTAIN_VERSION=0.4.0.dev6
   volumes_from:
     - mredis
 
@@ -36,7 +35,6 @@ planner:
   environment:
     - TERM=xterm
     - PLANNER_CONFIG=agora.planner.server.config.ProductionConfig
-    - AGORA_PLANNER_VERSION=0.3.0.dev0
 
 fragment:
   image: smartdeveloperhub/agora-planner
@@ -51,7 +49,6 @@ fragment:
   environment:
     - TERM=xterm
     - PLANNER_CONFIG=agora.planner.server.config.ProductionConfig
-    - AGORA_PLANNER_VERSION=0.3.0.dev0
 
 scmmetrics:
   build: scmmetrics
