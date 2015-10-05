@@ -133,7 +133,7 @@ sdhapi:
     - "9002:8080"
 
 ldap:
-  build: ldap
+  image: smartdeveloperhub/ldap
   hostname: ldap
   domainname: localdomain
   environment:
